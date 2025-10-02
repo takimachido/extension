@@ -1,0 +1,63 @@
+{
+  "manifest_version": 3,
+  "name": "FlashScreener",
+  "description": "Quickly open web pages from any CA on Solana.",
+  "version": "1.69.431",
+  "permissions": ["activeTab", "scripting", "contextMenus"],
+
+  "icons": {
+    "16": "icons/logo16.png",
+    "32": "icons/logo32.png",
+    "48": "icons/logo48.png",
+    "128": "icons/logo128.png"
+  },
+
+  "action": {
+    "default_icon": {
+      "16": "icons/logo16.png",
+      "32": "icons/logo32.png"
+    }
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+
+  "commands": {
+    "open-pumpfun": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P"
+      },
+      "description": "Pumpfun"
+    },
+    "open-dexscreener": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
+      },
+      "description": "Dexscreener"
+    },
+    "open-solscan": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Solscan"
+    },
+    "open-photon": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F"
+      },
+      "description": "Photon"
+    }
+  }
+}

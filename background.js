@@ -1,7 +1,5 @@
-// --- Função para criar menus de contexto ---
 function createContextMenus() {
   chrome.contextMenus.removeAll(() => {
-    // Cada item é independente
     chrome.contextMenus.create({
       id: "open-pumpfun",
       title: "Flash Pump.fun",
@@ -28,22 +26,18 @@ function createContextMenus() {
   });
 }
 
-// --- Executa ao instalar ---
 chrome.runtime.onInstalled.addListener(() => {
   createContextMenus();
 
-  // Abre página de instruções na primeira instalação
   chrome.tabs.create({
     url: "https://x.com/flashscreener/status/1967419496408244622"
   });
 });
 
-// --- Executa quando o navegador inicia ---
 chrome.runtime.onStartup.addListener(() => {
   createContextMenus();
 });
 
-// --- Listener para clique nos menus ---
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   const selectedText = info.selectionText?.trim();
   if (!selectedText) return;
@@ -69,7 +63,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
-// --- Listener para atalhos ---
 chrome.commands.onCommand.addListener((command) => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.scripting.executeScript(
@@ -108,7 +101,6 @@ chrome.commands.onCommand.addListener((command) => {
   });
 });
 
-// --- Listener para clique no ícone da extensão ---
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({
     url: "chrome://extensions/shortcuts"
